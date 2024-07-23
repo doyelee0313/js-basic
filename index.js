@@ -788,7 +788,7 @@ newH1.style.textAlign = "center";
 
 
 //PROMISE = an object that manages asynchronous operations, wrap a promise object around {asynchronous code}
-//"i promise to return a value" PENDING -> RESOLVED or REJETED
+//"i promise to return a value" PENDING -> RESOLVED or REJETED, 기다렸다가 resolve 아님 reject 값 리턴함
 //new Promise((resolve, reject) => {asynchronous code})
 
 //DO THESE CHORES IN ORDER
@@ -799,37 +799,42 @@ newH1.style.textAlign = "center";
 
 //example of nested code
 
-function walkDog(callback){
-    setTimeout(() => {
-        console.log("u walk the dog");
-        callback();
-    }, 1500);
-}
-function cleanKitchen(callback){
-    setTimeout(() => {
-        console.log("u cleanKitchen");
-        callback();
-    }, 2500);
-}
-function trash(callback){
-    setTimeout(() => {
-        console.log("u take out trash");
-        callback();
-    }, 500);
-}
+// function walkDog(callback){
+//     setTimeout(() => {
+//         console.log("u walk the dog");
+//         callback();
+//     }, 1500);
+// }
+// function cleanKitchen(callback){
+//     setTimeout(() => {
+//         console.log("u cleanKitchen");
+//         callback();
+//     }, 2500);
+// }
+// function trash(callback){
+//     setTimeout(() => {
+//         console.log("u take out trash");
+//         callback();
+//     }, 500);
+// }
 
-walkDog(() => {
-    cleanKitchen(() => {
-        trash(() => console.log("done"));
-    })
-})
+// walkDog(() => {
+//     cleanKitchen(() => {
+//         trash(() => console.log("done"));
+//     })
+// })
 
-//example of code using promise
+// //example of code using promise
 
 function walkDog(){
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            resolve("u walk the dog");
+            const walkedDog = true;
+            if(walkedDog){
+                resolve("u walked dog"); //resolve 의 리턴값
+            } else {
+                reject("u didnt walked dog"); //리젝의 리턴값
+            }        
         }, 1500);
     })
 }
@@ -837,7 +842,12 @@ function walkDog(){
 function cleanKitchen(){
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            resolve("u cleanKitchen");
+            const kitchenCleaned = true;
+            if(kitchenCleaned){
+                resolve("u cleanKitchen");
+            } else {
+                reject("u didnt cleanKitchen");
+            }
         }, 1500);
     })
 }
@@ -845,14 +855,59 @@ function cleanKitchen(){
 function trash(){
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            resolve("u take out trash");
+            const trash = false;
+            if(trash){
+                resolve("u trashed");
+            } else {
+                reject("u didnt trashed");
+            }      
         }, 1500);
     })
 }
 
-walkDog().then(value => {console.log(value); return cleanKitchen()}) //value is the return value
-         .then(value => {console.log(value); return trash()})
-         .then(value => console.log(value));
+// walkDog().then(value => {console.log(value); return cleanKitchen()}) //value is the return value
+//          .then(value => {console.log(value); return trash()})
+//          .then(value => console.log(value))
+//          .catch(error => console.error(error));
+
+// //catch will handle all the reject
+
+//Async/Await = async: makes a function return a promise
+//              await : makes a async function wait for a promise
+
+//              allows you write asynchornous code in a synchornous manner
+//              async does not have resolve or reject parameters
+//              everything after await is place in a event queue
+
+
+//sync = 순서대로 천천히
+//async = 순서 상관 없이
+
+// async function doChores(){
+//     const walkDogResult = await walkDog();
+//     console.log(walkDogResult);
+
+//     const cleanKitchenResult = await cleanKitchen();
+//     console.log(cleanKitchenResult);
+
+//     const trashResult = await trash();
+//     console.log(trashResult);
+// }
+
+// doChores(); //async function 이라고 declare 해야지만 안에 await 쓸 수 있음
+
+//JSON = js obejct notation
+//{key: value} or [value1, value2, value3]
+//JSON.stringify() = converts a js obejct to json file
+//JSON.parse() = converts a JSON string to a JS object
+
+// const names = ["a", "b", "c", "d"];
+
+// const jsonstring = JSON.stringify(names);
+
+// console.log(jsonstring);
+
+// console.log(JSON.parse(jsonstring));
 
 
 
