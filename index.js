@@ -412,3 +412,447 @@
 // person2.sayHello();
 // person2.sayBye();
 
+//STATIC keyword
+
+// class MathUtil{
+//     static PI = 3.14;
+// }
+
+// const MathUtil1 = new MathUtil();
+
+// console.log(MathUtil1.PI); //이렇게 새로 만들 필요없음, 왜냐하면 static 이라 클래스 자체에 있기 때문
+
+// console.log(MathUtil.PI);
+
+//GETTER AND SETTER
+
+//getter = special method that makes a property readable
+//setter = special method that makes a property writable
+
+// class Rectangle{
+//     constructor(width, height) {
+//         this.width = width;
+//         this.height = height;
+//     }
+
+//     set width(newWidth) {
+//         if(newWidth > 0){
+//             this._width = newWidth;
+//         }
+//         else {
+//             console.error("width must be a positive num");
+//         }
+//     }
+
+//     set height(newHeight) {
+//         if(newHeight > 0){
+//             this._height = newHeight;
+//         }
+//         else {
+//             console.error("width must be a positive num");
+//         }
+//     }
+
+//     get width() {
+//         return this._width;
+//     }
+
+//     get height() {
+//         return this._height;
+//     }
+// }
+
+// const rectangle = new Rectangle(3,4);
+
+// console.log(rectangle.width);
+// console.log(rectangle.height);
+
+//DESTRUCTURING = extract values from arrays and objects then assign them to variables in a convenient way
+//[] = to perform array destructuring
+//{} = to perform object destructuring
+
+
+// //기본 destructuring
+// const person1 = {
+//     firstName: "Spongebob",
+//     lastName: "SquarePants",
+//     age: 30,
+//     job: "fry cook",
+// }
+
+// // const {firstName, lastName, age, job} = person1;
+
+// // console.log(firstName);
+
+// //function destructuring
+
+// function displayPerson({firstName, lastName, age, job="Unemployed"}){
+//     console.log(`name: ${firstName} ${lastName}`);
+//     console.log(`age: ${age}`);
+// }
+
+// displayPerson(person1);
+
+//closure = a function defined inside of another function, the inner function has access to the variables and scope of the outer function
+
+// function outer() {
+//     let message = "hello";
+    
+//     function inner() {
+//         console.log(message);
+//     }
+
+//     inner();
+// }
+
+// message = "Goodbye";
+
+// outer();
+
+
+//ES6 module = 다른 파일에 있는 함수를 쓰는거
+//mathUtil 파일을 내가 만들어야 함
+
+// import {PI, getCircumference, getArea, getVolume} from './mathUtil.js';
+
+// console.log(PI);
+// const circumference = getCircumference(10);
+// const area = getArea(10);
+// const volume = getVolume(10);
+
+// console.log(PI)
+// console.log(`${circumference}cm `);
+
+//SYNCHRONOUS = executes line by line consercutively in a sequential manner code that waits for an operation to complete
+
+//ASYNCHRONOUS = allows multiple operations to be performed concurrently without waiting doesnt block the execution flow and allows the program to continue (time goes on)
+//handled with callbacks, promiese, async
+
+// function func1(callback){
+//     setTimeout(() => {console.log("Task 1");  //since there is more than 1 line of code, aft 3sex do console log and callback.
+//                       callback();}, 3000);
+// }
+
+// function func2(){
+//     console.log("Task 2");
+//     console.log("Task 3");
+//     console.log("Task 4");
+// }
+
+// func1(func2);
+
+//ERROR = an object that is created to represent a problem that occurs, occur often w user input or establishing a connection
+
+// console.lag("Hello"); //Uncaught TypeError: console.lag is not a function at index.js:546:9
+
+//network error
+//promise rejection
+//security errors
+
+//try {} = encloses code that might potentially cause an error
+// catch {} = catch and handle any thrown errors from try{}
+//finally {} = always execute
+
+// try{
+//     console.log(x);
+// } catch(error) {
+//     console.log(error);
+// } finally {
+//     console.log("this always execute");
+//     //close file
+//     //close connection
+// }
+
+// console.log("this is the end"); //try catch 쓰면 에러 잡고 끝에까지 도달했다는걸 확인
+
+// try{
+//     const dividend = Number(window.prompt("enter a dividend: "));
+//     const divisor = Number(window.prompt("enter a divisor"));
+
+//     if(divisor == 0) { //내가 만든 에러 조건, 이렇게 되면 에러 던지기
+//         throw new Error("you cant divide by zero");
+//     }
+
+//     const result = dividend/divisor;
+//     console.log(result);
+
+// }
+// catch(error) {
+//     console.log(error);
+// }
+
+// console.log("you have reached the end");
+
+//DOM = document obejct model
+//obejct that represents the page you see in the web browser and provides you with an API to interact with it.
+//web browser constructs the DOM when it loads an HTML document, and structures all the elements in a tree-like representation.
+//js can access the DOm to dynamically change the content, structure, and style of a web page
+
+// document.getElementById(); //document는 object이고 그안에 method를 부른거
+// console.log(document); //html 요소 어떻게 되어 있는지
+// console.dir(document); //document 라는 오브젝트 부르기, 모든 property 다 보여줌
+
+// // document.title = "my sebsite" //title 를 바꾸기
+
+// document.body.style.backgroundColor = "hs1(0, 0%, 15%)"; //dark mode 로 전환
+
+// const username = "Doye";
+
+// const welcomeMsg = document.getElementById("welcome-msg")
+
+// welcomeMsg.textContent += username === "" ? `Guest` : username;
+
+//ELEMENT SELECTORS = methods used to target and manipulate HTML elements
+
+// 1. document.getElementById() //return single element if finds it, but if not return null
+// 2. document.getElementsByClassName() //html collection
+// 3. document.getElementsByTagName() //html collection
+// 4. document.querySelector() //elemnet or null
+// 5. document.querySelectorAll() //nodelist
+
+
+//2. document.getElementsByClassName()
+// const fruits = document.getElementsByClassName("fruits");
+
+// console.log(fruits);
+
+// fruits[0].style.backgroundColor = "yellow"; //apple css 바꾸기
+
+// for(let fruit of fruits) {
+//     fruit.style.backgroundColor = "yellow";
+// }
+
+// fruits.forEach(); //html collection does not have foreach method
+
+// Array.from(fruits).forEach(fruit => {
+//     fruit.style.backgroundColor = "yellow";
+// }); //fruit를 array로 typecast 변환한 다음에 foreach 적용가능
+
+
+// 3. document.getElementsByTagName()
+// const h4Elements = document.getElementsByTagName("h4");
+
+// console.log(h4Elements);
+
+// h4Elements[0].style.backgroundColor = "yellow";
+
+// for(let h4Element of h4Elements){
+//     h4Element.style.backgroundColor = "yellow";
+// }
+
+// 4. document.querySelector() first matching element, return only one
+// const element = document.querySelector(".fruits");
+
+// element.style.backgroundColor = "yellow";
+
+//5. document.querySelectorAll()
+
+// const fruits = document.querySelectorAll(".fruits")
+
+// fruits[0].style.backgroundColor = "yellow";
+
+// const foods = document.querySelectorAll("li")
+
+// console.log(foods); //already array so no need to type cast into array
+
+// foods.forEach(food => {
+//     food.style.backgroundColor = "yellow";
+// });
+
+//DOM navigation = the process of navigating through the strucutre of an HTML document using JS
+
+//.firstElementChild
+//.lastElementChild
+//.nextElementSibling
+//.previousElementSibling
+//.parentElement
+//.children
+
+// const element = document.getElementById("fruits");
+// const firstChild = element.firstElementChild;
+// firstChild.style.backgroundColor = "yellow";
+
+// const ulElements = document.querySelectorAll("ul");
+
+// ulElements.forEach(ulElement => {
+//     const firstChild = ulElement.firstElementChild;
+//     firstChild.style.backgroundColor = "yellow";
+// }); //ul의 가장 첫번째 요소들을 색칠함, lastElement도 동일
+
+// const element = document.getElementById("apple");
+// const nextSibling = element.nextElementSibling;
+// nextSibling.style.backgroundColor = "yellow"; //orange가 색칠됨, previousElementSibling 도 같은 원리
+
+// const element = document.getElementById("apple"); //fruit 가 선택되어 모두 색칠됨
+// const parent = element.parentElement;
+// parent.style.backgroundColor = "yellow"; //children 도 똑같음, 얘는 array로 변환해서 사용해야 함
+
+
+//ADD AND CHANGE HTML
+//create element
+
+const newH1 = document.createElement("h1");
+
+//add arrtribute
+
+newH1.textContent = "i like pizza";
+newH1.id = "myH1";
+newH1.style.color = "red";
+newH1.style.textAlign = "center";
+
+//append element to dom
+// document.body.append(newH1);
+// document.body.prepend(newH1);
+
+// document.getElementById("box1").append(newH1);
+
+// document.getElementById("box1").prepend(newH1);
+
+// const box2 = document.getElementById("box2")
+// document.body.insertBefore(newH1, box2);
+
+//remove HTML element
+// document.getElementById("box1").removeChild(newH1);
+
+
+//EVENTLISTENER = listen fro specific events to create interactive web pages
+//events: click, mouseover, mouseout
+//.addEventListener(event, callback)
+
+// const myBox = document.getElementById("myBox");
+
+// function changeColor(event) {
+//     event.target.style.backgroundColor = "tomato";
+//     event.target.textContent = "outch!"
+// }
+
+// myBox.addEventListener("click", changeColor)
+
+// //OR
+
+// myBox.addEventListener("click", function(event){
+//     event.target.style.backgroundColor = "tomato";
+//     event.target.textContent = "outch!";
+// });
+
+// //OR
+
+// myBox.addEventListener("click", event => {
+//     event.target.style.backgroundColor = "tomato";
+//     event.target.textContent = "outch!";
+// });
+
+// myBox.addEventListener("mouseover", event => {
+//     event.target.style.backgroundColor = "yellow";
+//     event.target.textContent = "wow";
+// });
+
+// myBox.addEventListener("mouseout", event => {
+//     event.target.style.backgroundColor = "green";
+//     event.target.textContent = "hehe";
+// });
+
+//KEY EVENTS = listen for specific events to create interactive web pages, events: keydown, keyup
+//.document.addEventListener(event, callback);
+
+// document.addEventListener("keydown", event => {
+//     console.log(`key down is = ${event.key}`);
+// })
+
+// document.addEventListener("keyup", event => {
+//     console.log(`key up is = ${event.key}`);
+// })
+
+// const myBox = document.getElementById("myBox");
+
+// document.addEventListener("keydown", event => {
+//     myBox.textContent = "!!";
+// })
+
+// document.addEventListener("keyup", event => {
+//     myBox.textContent = "??";
+// })
+
+//HIDE AND SHOW ELEMENT
+//myImg.style.display = "none";
+//myImg.style.visibility = "hidden";
+
+//CLASSLIST = element properties in js used to interact w an element's list of classes (css classes)
+//allows you to make reusable classes for many elements across your webpage
+//add(),remove(), toggle(remove if present, add if not), replace(oldclass, newclass), contains()
+
+//const my Button = document.getElementbyId("myButton");
+
+// myButton.classList.add("enabled");
+// myButton.classList.remove("enabled");
+
+
+//PROMISE = an object that manages asynchronous operations, wrap a promise object around {asynchronous code}
+//"i promise to return a value" PENDING -> RESOLVED or REJETED
+//new Promise((resolve, reject) => {asynchronous code})
+
+//DO THESE CHORES IN ORDER
+
+//1.walk the dog
+//2. clean the kitchen
+//3. take out the trash
+
+//example of nested code
+
+function walkDog(callback){
+    setTimeout(() => {
+        console.log("u walk the dog");
+        callback();
+    }, 1500);
+}
+function cleanKitchen(callback){
+    setTimeout(() => {
+        console.log("u cleanKitchen");
+        callback();
+    }, 2500);
+}
+function trash(callback){
+    setTimeout(() => {
+        console.log("u take out trash");
+        callback();
+    }, 500);
+}
+
+walkDog(() => {
+    cleanKitchen(() => {
+        trash(() => console.log("done"));
+    })
+})
+
+//example of code using promise
+
+function walkDog(){
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve("u walk the dog");
+        }, 1500);
+    })
+}
+
+function cleanKitchen(){
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve("u cleanKitchen");
+        }, 1500);
+    })
+}
+
+function trash(){
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve("u take out trash");
+        }, 1500);
+    })
+}
+
+walkDog().then(value => {console.log(value); return cleanKitchen()}) //value is the return value
+         .then(value => {console.log(value); return trash()})
+         .then(value => console.log(value));
+
+
+
