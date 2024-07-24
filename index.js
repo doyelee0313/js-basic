@@ -909,5 +909,39 @@ function trash(){
 
 // console.log(JSON.parse(jsonstring));
 
+//FETCH data from API
+
+//fetch = function used for making HTTP requests to fetch resources 
+//(JSON style data, images, files)
+//fetch(url, {method: "GET"}) 
+
+// fetch("https://pokeapi.co/api/v2/pokemon/ditto")
+//     .then(response => {
+//         if(!response.ok){
+//             throw new Error("could not fetch resources");
+//         }
+//         return response.json();
+//     })
+//     .then(data => console.log(data.id))
+//     .catch(error => console.error(error));
+
+async function fetchData() {
+    try{
+        const response = await fetch("https://pokeapi.co/api/v2/pokemon/ditto");
+
+        if(!response.ok) {
+            throw new Error("could not fetch resource");
+        }
+
+        const data = await response.json();
+        console.log(data);
+    }
+    catch(error){
+        console.error(error);
+    }
+}
+
+fetchData();
+
 
 
